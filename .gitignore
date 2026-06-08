@@ -1,0 +1,24 @@
+# Cookie / secrets
+my_cookies.py
+
+# Python
+__pycache__/
+*.py[cod]
+*.class
+
+# Output / data
+outputs/
+
+# Dev / temp scripts (underscore-prefixed)
+_*.py
+_*.js
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
