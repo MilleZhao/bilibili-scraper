@@ -161,7 +161,7 @@ function scrape(){
 if(m==="search"||m==="scrape")return;
 var bs=document.querySelectorAll(".rcb:checked");if(!bs.length)return;
 m="scrape";
-var bvids=[];for(var i=0;i<bs.length;i++)bvids.push(bs[i].dataset.bvid);
+var bvids=[];for(var i=0;i<bs.length;i++)bvids.push(bs[i].dataset.bv);
 document.getElementById("scrapeBtn").disabled=true;document.getElementById("go").disabled=true;
 document.getElementById("sq").innerHTML=bvids.map(function(b){return '<div class="sqi" id="sq-'+b+'"><span class="b2">'+b+'</span><span class="t2">等待...</span><span class="s2"></span></div>';}).join("");
 document.getElementById("dot").className="dot on";document.getElementById("pbar").style.width="0%";
