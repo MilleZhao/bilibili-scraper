@@ -1,0 +1,22 @@
+# Generated outputs (reports, CSVs, charts, Excel)
+outputs/
+charts/
+
+# Data files (large JSON/CSV)
+*.json
+*.csv
+!requirements.txt
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Node
+node_modules/
+
+# Skill bundle
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
