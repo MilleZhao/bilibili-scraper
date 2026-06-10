@@ -348,6 +348,21 @@ def save_json(data, path):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
+def _append_consolidated(out_root, filename, new_items):
+    '''Append items to a consolidated JSON array file, thread-safe.'''
+    import json as _json
+    from pathlib import Path as _Path
+    fpath = _Path(out_root) / filename
+    existing = []
+    if fpath.exists():
+        try:
+            existing = _json.loads(fpath.read_text(encoding='utf-8'))
+        except:
+            existing = []
+    existing.extend(new_items)
+    fpath.write_text(_json.dumps(existing, ensure_ascii=False, indent=2), encoding='utf-8')
+
+
 def save_outputs(video_info, comments, danmaku, out_dir):
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -367,3 +382,6 @@ def save_outputs(video_info, comments, danmaku, out_dir):
     with (out_dir / "danmaku.csv").open("w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=df, extrasaction="ignore")
         w.writeheader(); w.writerows(danmaku)
+    # Also append to consolidated files for data-cleaning scripts
+    _append_consolidated(out_dir.parent, "comments_all.json", comments)
+    _append_consolidated(out_dir.parent, "danmaku_all.json", danmaku)

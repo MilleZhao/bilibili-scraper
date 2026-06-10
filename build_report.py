@@ -17,7 +17,7 @@ from docx.oxml import parse_xml
 # ============================================================
 # 数据准备
 # ============================================================
-SRC = Path(__file__).parent / "outputs" / "comments.json"
+SRC = Path(__file__).parent / "outputs" / "comments_all.json"
 raw = json.loads(SRC.read_text(encoding="utf-8"))
 
 total_bilibili = 24754
@@ -425,7 +425,7 @@ for i, h in enumerate(["文件名", "格式", "说明"]):
     set_cell(file_table.cell(0, i), h, bold=True, size=10, color=RGBColor(0xFF,0xFF,0xFF), fill="2E74B5", align="center")
 
 files = [
-    ("comments.json", "JSON", "包含全部 17,278 条原始爬取数据的结构化文件"),
+    ("comments_all.json", "JSON", "包含全部 17,278 条原始爬取数据的结构化文件"),
     ("comments_sorted.json", "JSON", "清洗后按点赞排序的 14,002 条有效评论"),
     ("comments_sorted.xlsx", "Excel", "清洗后的 Excel，含筛选器与高赞高亮"),
 ]

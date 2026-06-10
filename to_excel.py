@@ -7,7 +7,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
 
-SRC = Path(__file__).parent / "outputs" / "comments.json"
+SRC = Path(__file__).parent / "outputs" / "comments_all.json"
 OUT = SRC.parent / "comments_sorted.xlsx"
 
 # ---- 1. 读取 + 清洗非法字符 ----

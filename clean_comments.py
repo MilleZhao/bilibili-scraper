@@ -2,7 +2,7 @@
 import json, csv, re
 from pathlib import Path
 
-src = Path(__file__).parent / "outputs" / "comments.json"
+src = Path(__file__).parent / "outputs" / "comments_all.json"
 data = json.loads(src.read_text(encoding="utf-8"))
 
 # ---- 去无效规则 ----

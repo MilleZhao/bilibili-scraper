@@ -1,7 +1,7 @@
 import json, csv
 from pathlib import Path
 
-src = Path(__file__).parent / "outputs" / "comments.json"
+src = Path(__file__).parent / "outputs" / "comments_all.json"
 dst = src.with_suffix(".csv")
 
 data = json.loads(src.read_text(encoding="utf-8"))
