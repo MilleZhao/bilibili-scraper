@@ -1,4 +1,4 @@
-﻿"""一键生成 Excel：读取 + 去无效 + 排序 + 导出"""
+"""一键生成 Excel：读取 + 去无效 + 排序 + 导出"""
 import json, re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -7,7 +7,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
 
-SRC = Path(r"C:\Users\LENOVO\Documents\爬虫\outputs\comments.json")
+SRC = Path(__file__).parent / "outputs" / "comments.json"
 OUT = SRC.parent / "comments_sorted.xlsx"
 
 # ---- 1. 读取 + 清洗非法字符 ----

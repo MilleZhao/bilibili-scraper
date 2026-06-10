@@ -1,4 +1,4 @@
-﻿"""
+"""
 生成 B站评论数据清洗分析报告（Word .docx）
 预设: standard_business_brief
 """
@@ -17,7 +17,7 @@ from docx.oxml import parse_xml
 # ============================================================
 # 数据准备
 # ============================================================
-SRC = Path(r"C:\Users\LENOVO\Documents\爬虫\outputs\comments.json")
+SRC = Path(__file__).parent / "outputs" / "comments.json"
 raw = json.loads(SRC.read_text(encoding="utf-8"))
 
 total_bilibili = 24754

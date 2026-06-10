@@ -10,7 +10,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
 
-SRC = Path(r'C:\Users\LENOVO\Documents\爬虫\outputs\danmaku_BV11mFLziEyP.json')
+SRC = Path(__file__).parent / 'outputs' / 'danmaku_BV11mFLziEyP.json'
 raw = json.loads(SRC.read_text(encoding='utf-8'))
 
 for d in raw:

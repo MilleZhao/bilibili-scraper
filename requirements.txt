@@ -1,0 +1,4 @@
+# Project003 - 数据清洗与报告生成
+python-docx>=1.0
+matplotlib>=3.7
+openpyxl>=3.1

@@ -1,8 +1,8 @@
-﻿"""整理评论：去无效 + 按点赞排序"""
+"""整理评论：去无效 + 按点赞排序"""
 import json, csv, re
 from pathlib import Path
 
-src = Path(r"C:\Users\LENOVO\Documents\爬虫\outputs\comments.json")
+src = Path(__file__).parent / "outputs" / "comments.json"
 data = json.loads(src.read_text(encoding="utf-8"))
 
 # ---- 去无效规则 ----
