@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B站通用筛选爬取平台</title>
+<style>
+:root{--bg:#f0f2f5;--card:#fff;--brd:#e1e4e8;--txt:#24292e;--mu:#6a737d;--ac:#1677ff;--ah:#4096ff;--dn:#cf222e;--gn:#1a7f37;--r:6px}*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif;background:var(--bg);color:var(--txt);line-height:1.5}.wrap{max-width:1100px;margin:0 auto;padding:24px 16px}h1{font-size:20px;font-weight:600}.sub{font-size:13px;color:var(--mu);margin:4px 0 16px}.card{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:14px 18px;margin-bottom:14px}.cttl{font-size:13px;font-weight:600;color:var(--ac);margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.row+.row{margin-top:7px}.lbl{font-size:13px;font-weight:500;white-space:nowrap}.inp{padding:6px 10px;border:1px solid var(--brd);border-radius:var(--r);font-size:13px;background:#fff;outline:none}.inp:focus{border-color:var(--ac)}.inp.w{flex:2;min-width:160px}.inp.s{width:65px;flex:none;text-align:center}.sel{padding:6px 28px 6px 10px;border:1px solid var(--brd);border-radius:var(--r);font-size:13px;background:#fff;appearance:none;cursor:pointer;outline:none}.sel:focus{border-color:var(--ac)}.btn{padding:7px 18px;border:none;border-radius:var(--r);font-size:13px;font-weight:500;cursor:pointer}.btn-p{background:var(--ac);color:#fff}.btn-p:hover{background:var(--ah)}.btn-p:disabled{opacity:.45;cursor:not-allowed}.btn-o{background:#fff;color:var(--ac);border:1px solid var(--brd)}.btn-o:hover{background:#f0f7ff;border-color:var(--ac)}.btn-s{padding:4px 12px;font-size:12px}.hint{font-size:12px;color:var(--mu);margin-top:6px}.stbar{display:flex;align-items:center;gap:10px;padding:9px 14px;background:var(--card);border:1px solid var(--brd);border-radius:var(--r);margin-bottom:14px;font-size:13px}.dot{width:8px;height:8px;border-radius:50%;background:#d9d9d9;flex-shrink:0}.dot.on{background:var(--gn);animation:pls 1s infinite}.dot.ok{background:var(--ac)}@keyframes pls{0%,100%{opacity:1}50%{opacity:.4}}.pbar{flex:1;height:4px;background:#f0f0f0;border-radius:2px;overflow:hidden}.pbar-in{height:100%;background:var(--ac);border-radius:2px;transition:width .3s;width:0%}.ptxt{font-size:12px;color:var(--mu);min-width:36px;text-align:right}.err{display:none;background:#fff2f0;border:1px solid #ffccc7;color:var(--dn);padding:10px 14px;border-radius:var(--r);margin-bottom:10px;font-size:13px}.rhdr{display:none;align-items:center;justify-content:space-between;padding:6px 0;margin-bottom:6px}.rcnt{font-size:14px;font-weight:600}.rcnt em{color:var(--ac);font-style:normal}.fltrow{display:flex;align-items:center;gap:8px}.fltrow input{width:180px;padding:4px 8px;border:1px solid var(--brd);border-radius:var(--r);font-size:12px;flex:none}.fltrow span{font-size:12px;color:var(--mu)}.twrap{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);overflow:auto;max-height:50vh;margin-bottom:14px}table{width:100%;border-collapse:collapse;font-size:13px}th{background:#fafafa;font-weight:600;text-align:left;padding:8px 10px;border-bottom:2px solid #f0f0f0;font-size:12px;color:var(--mu);position:sticky;top:0;z-index:1}th.srt{cursor:pointer}th.srt:hover{color:var(--ac)}td{padding:7px 10px;border-bottom:1px solid #f5f5f5}tr:hover td{background:#fafbff}.bv{color:var(--ac);text-decoration:none;font-family:monospace;font-size:12px}.bv:hover{text-decoration:underline}.cb{width:30px;text-align:center}.n{width:36px;text-align:center;color:var(--mu)}.bvcol{width:120px}.vw{width:85px;text-align:right;font-weight:500}.dr{width:65px;text-align:right;color:var(--mu)}.ct{width:70px;font-size:12px;color:var(--mu)}.empty{text-align:center;padding:40px;color:var(--mu)}.acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.badge{font-size:12px;color:var(--mu);margin-left:auto}.sq{max-height:180px;overflow-y:auto}.sqi{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid #f5f5f5;font-size:13px}.sqi .b2{font-family:monospace;font-size:12px;min-width:110px}.sqi .t2{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sqi .s2{font-size:12px;color:var(--mu);white-space:nowrap}.sqi.done .b2{color:var(--gn)}.sqi.err .b2{color:var(--dn)}.chkbox{display:flex;align-items:center;gap:6px;font-size:13px}.chkbox input{width:15px;height:15px;accent-color:var(--ac)}
+.footer{text-align:center;padding:32px 16px 24px;font-size:12px;color:var(--mu);line-height:1.8}.footer a{color:var(--mu);text-decoration:underline}.footer .warn{color:#b85c00;font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>B站通用筛选爬取平台</h1>
+<p class="sub">关键词搜索 / 分区浏览 / 一键爬取评论与弹幕 / 结果保存至 outputs/ 目录</p>
+
+<div class="err" id="err"></div>
+
+<div class="card">
+  <div class="cttl">搜索</div>
+  <div class="row">
+    <input class="inp w" id="kw" placeholder="关键词（可空，逗号分隔多词）" autofocus>
+    <span class="lbl">分区</span>
+    <select class="sel" id="cat"></select>
+    <span class="lbl">排序</span>
+    <select class="sel" id="srt"><option value="click">最多播放</option><option value="pubdate">最新发布</option><option value="stow">最多收藏</option><option value="dm">最多弹幕</option></select>
+    <span class="lbl">数量</span>
+    <input class="inp s" id="num" value="50">
+    <button class="btn btn-p" id="go" onclick="search()">搜索</button>
+  </div>
+  <div class="hint">提示：关键词留空 = 浏览分区热门 路 分区选全站 = 全站搜 路 两者都填 = 分区内精搜</div>
+</div>
+
+<div class="stbar">
+  <div class="dot" id="dot"></div>
+  <span id="stt">加载中...</span>
+  <div class="pbar"><div class="pbar-in" id="pbar"></div></div>
+  <span class="ptxt" id="ppct"></span>
+</div>
+
+<div class="rhdr" id="rhdr">
+  <div class="rcnt">找到 <em id="rcnt">0</em> 条</div>
+  <div class="fltrow">
+    <span style="font-size:12px;color:var(--mu)">筛选</span>
+    <input class="inp" id="flt" placeholder="关键词过滤..." oninput="flt()">
+    <span style="font-size:12px;color:var(--mu)" id="fmsg"></span>
+  </div>
+</div>
+
+<div class="twrap">
+  <table>
+    <thead><tr>
+      <th class="cb"><input type="checkbox" id="allcb" onchange="toggleAll(this)"></th>
+      <th class="n">#</th><th class="bvcol">BV号</th><th>标题</th><th>UP主</th><th class="vw srt" onclick="srt('views')">播放量</th><th class="dr srt" onclick="srt('duration')">时长</th><th class="ct">分区</th>
+    </tr></thead>
+    <tbody id="tb">
+      <tr><td colspan="8" class="empty">输入关键词或选择分区后点击「搜索」</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="acts">
+  <button class="btn btn-p" id="scrapeBtn" onclick="scrape()" disabled>爬取选中视频</button>
+  <button class="btn btn-o btn-s" id="cpyBtn" onclick="copyBv()" disabled>复制 BV 列表</button>
+  <button class="btn btn-o btn-s" id="expBtn" onclick="expCsv()" disabled>导出 CSV</button>
+  <span class="badge" id="badge"></span>
+</div>
+
+<div class="card">
+  <div class="cttl">爬取配置</div>
+  <div class="row">
+    <label class="chkbox"><input type="checkbox" id="ov" checked>视频信息</label>
+    <label class="chkbox"><input type="checkbox" id="oc" checked>评论</label>
+    <label class="chkbox"><input type="checkbox" id="od" checked>弹幕</label>
+    <span class="lbl">评论页数</span><input class="inp s" id="cp" value="50" style="width:55px">
+    <span class="lbl">弹幕段数</span><input class="inp s" id="ds" value="1200" style="width:60px">
+  </div>
+  <div class="sq" id="sq"></div>
+</div>
+</div>
+<div class="footer">
+  <p class="warn">&#9888; 法律风险提示</p>
+  <p>本工具仅供<strong>学习研究</strong>使用。抓取 Bilibili 数据前，请确认你已阅读并同意 <a href="https://www.bilibili.com/protocal/licence.html" target="_blank">B站用户协议</a>。</p>
+  <p>使用者须自行承担以下风险：未经授权的大规模数据采集可能违反 B站服务条款；<br>爬取频率过高可能导致账号被限流或封禁；采集的数据不得用于商业用途。</p>
+  <p style="margin-top:12px">本项目采用 <a href="https://github.com/MilleZhao/bilibili-scraper/blob/master/LICENSE" target="_blank">MIT 许可证</a> &middot; 作者不对使用后果承担责任</p>
+</div>
+
+<script>
+var r=[],f=[],p=null,l=0,m="",sf="views",sa=false;
+var xC=new XMLHttpRequest();xC.open("GET","/api/categories");
+xC.onload=function(){var cs=JSON.parse(xC.responseText);var s=document.getElementById("cat");cs.forEach(function(c){var o=document.createElement("option");o.value=c.tid;o.text=c.name;if(c.tid===0)o.selected=true;s.appendChild(o);});document.getElementById("stt").textContent="就绪";};xC.send();
+var xL=new XMLHttpRequest();xL.open("GET","/api/events?since=0");xL.onload=function(){l=JSON.parse(xL.responseText).latest_id;};xL.send();
+var xS=new XMLHttpRequest();xS.open("GET","/api/status");xS.onload=function(){var s=JSON.parse(xS.responseText);document.getElementById("stt").textContent="就绪 | Cookie:"+(s.cookie_ok?"OK":"NO")+" | Wbi:"+(s.wbi_ok?"OK":"NO");};xS.send();
+document.getElementById("kw").addEventListener("keydown",function(e){if(e.key==="Enter")search();});
+function err(msg){var e=document.getElementById("err");e.textContent=msg;e.style.display="block";setTimeout(function(){e.style.display="none";},8000);}
+function search(){
+if(m==="search"||m==="scrape")return;m="search";r=[];f=[];
+document.getElementById("err").style.display="none";
+document.getElementById("go").disabled=true;document.getElementById("scrapeBtn").disabled=true;
+document.getElementById("cpyBtn").disabled=true;document.getElementById("expBtn").disabled=true;
+document.getElementById("tb").innerHTML='<tr><td colspan="8" class="empty">搜索中...</td></tr>';
+document.getElementById("rhdr").style.display="none";document.getElementById("sq").innerHTML="";
+document.getElementById("badge").textContent="";document.getElementById("flt").value="";document.getElementById("fmsg").textContent="";
+document.getElementById("dot").className="dot on";document.getElementById("pbar").style.width="0%";document.getElementById("ppct").textContent="";
+document.getElementById("stt").textContent="搜索中...";
+var kw=document.getElementById("kw").value.trim().split(/[,，]/).filter(Boolean);
+var tid=parseInt(document.getElementById("cat").value)||0;
+var sort=document.getElementById("srt").value;
+var target=parseInt(document.getElementById("num").value)||50;
+if(p)clearInterval(p);p=setInterval(poll,1000);
+var x=new XMLHttpRequest();x.open("POST","/api/search");x.setRequestHeader("Content-Type","application/json");
+x.onerror=function(){err("搜索请求失败");finishS();};
+x.send(JSON.stringify({keywords:kw,tid:tid,sort:sort,target:target,fast:false}));
+}
+function poll(){
+var x=new XMLHttpRequest();x.open("GET","/api/events?since="+l);
+x.onload=function(){
+var d=JSON.parse(x.responseText);l=d.latest_id;
+(d.events||[]).forEach(function(e){
+if(m==="search"){
+if(e.event==="search_progress"){document.getElementById("stt").textContent="搜索: "+e.data.kw+" | 候选:"+e.data.candidates;document.getElementById("pbar").style.width=Math.round(e.data.done/e.data.total*100)+"%";}
+else if(e.event==="search_done"){r=e.data.results;f=r.slice();render();document.getElementById("stt").textContent="完成! "+r.length+" 条";document.getElementById("pbar").style.width="100%";finishS();}
+else if(e.event==="search_error"){err(e.data.error);finishS();}
+else if(e.event==="status"){document.getElementById("stt").textContent=e.data.msg;}
+}else if(m==="scrape"){
+if(e.event==="scrape_progress"){sp(e.data);}
+else if(e.event==="video_done"){sd(e.data);}
+else if(e.event==="video_error"){se(e.data);}
+else if(e.event==="scrape_done"){fs();}
+else if(e.event==="status"){document.getElementById("stt").textContent=e.data.msg;}
+}
+});
+};x.send();
+}
+function finishS(){m="";document.getElementById("go").disabled=false;document.getElementById("dot").className="dot ok";clearInterval(p);p=null;}
+function toggleAll(el){var c=el.checked;var bs=document.querySelectorAll(".rcb");for(var i=0;i<bs.length;i++)bs[i].checked=c;upcnt();}
+function flt(){
+var w=document.getElementById("flt").value.trim().toLowerCase();
+if(!w){f=r.slice();document.getElementById("fmsg").textContent="";}
+else{
+var ws=w.split(/[,，\s]+/).filter(Boolean);
+f=r.filter(function(x){return ws.some(function(z){return x.title.toLowerCase().indexOf(z)>=0||x.author.toLowerCase().indexOf(z)>=0||x.category.toLowerCase().indexOf(z)>=0;});});
+document.getElementById("fmsg").textContent=f.length<r.length?("显示"+f.length+"/"+r.length):"";
+}
+render();upcnt();
+}
+function srt(fld){if(sf===fld)sa=!sa;else{sf=fld;sa=fld==="duration";}var m=sa?1:-1;f.sort(function(a,b){return(a[fld]||0)>(b[fld]||0)?m:-m;});render();}
+function render(){
+document.getElementById("rhdr").style.display="flex";document.getElementById("rcnt").textContent=r.length;
+if(!f.length){document.getElementById("tb").innerHTML='<tr><td colspan="8" class="empty">无匹配结果</td></tr>';return;}
+var h="";
+for(var i=0;i<f.length;i++){
+var v=f[i];
+h+='<tr><td class="cb"><input class="rcb" type="checkbox" data-bv="'+esc(v.bvid)+'" onchange="upcnt()"></td><td class="n">'+(i+1)+'</td><td class="bvcol"><a class="bv" href="https://www.bilibili.com/video/'+esc(v.bvid)+'" target="_blank">'+esc(v.bvid)+'</a></td><td>'+esc(v.title)+'</td><td>'+esc(v.author)+'</td><td class="vw">'+fmt(v.views)+'</td><td class="dr">'+fd(v.duration)+'</td><td class="ct">'+esc(v.category)+'</td></tr>';
+}
+document.getElementById("tb").innerHTML=h;upcnt();
+document.getElementById("cpyBtn").disabled=false;document.getElementById("expBtn").disabled=false;
+}
+function upcnt(){var n=document.querySelectorAll(".rcb:checked").length;document.getElementById("badge").textContent="已选 "+n+" 个";document.getElementById("scrapeBtn").disabled=n===0;}
+function scrape(){
+if(m==="search"||m==="scrape")return;
+var bs=document.querySelectorAll(".rcb:checked");if(!bs.length)return;
+m="scrape";
+var bvids=[];for(var i=0;i<bs.length;i++)bvids.push(bs[i].dataset.bv);
+document.getElementById("scrapeBtn").disabled=true;document.getElementById("go").disabled=true;
+document.getElementById("sq").innerHTML=bvids.map(function(b){return '<div class="sqi" id="sq-'+b+'"><span class="b2">'+b+'</span><span class="t2">等待...</span><span class="s2"></span></div>';}).join("");
+document.getElementById("dot").className="dot on";document.getElementById("pbar").style.width="0%";
+if(p)clearInterval(p);p=setInterval(poll,1000);
+var x=new XMLHttpRequest();x.open("POST","/api/scrape");x.setRequestHeader("Content-Type","application/json");
+x.send(JSON.stringify({bvids:bvids,options:{video_info:document.getElementById("ov").checked,comments:document.getElementById("oc").checked,danmaku:document.getElementById("od").checked,comment_pages:parseInt(document.getElementById("cp").value)||50,danmaku_segments:parseInt(document.getElementById("ds").value)||1200}}));
+}
+function sp(d){var e=document.getElementById("sq-"+d.bvid);if(e){e.querySelector(".t2").textContent=d.phase==="comments"?"评论中...":d.phase==="danmaku"?"弹幕中...":"准备中...";e.querySelector(".s2").textContent=(d.count||0)+" 条";}document.getElementById("pbar").style.width=Math.round(d.video_index/d.video_total*100)+"%";document.getElementById("stt").textContent="爬取: "+d.bvid+" ("+d.video_index+"/"+d.video_total+") "+d.phase;}
+function sd(d){var e=document.getElementById("sq-"+d.bvid);if(e){e.className="sqi done";e.querySelector(".t2").textContent=d.title||d.bvid;e.querySelector(".s2").textContent="评论:"+d.comments+" 弹幕:"+d.danmaku;}}
+function se(d){var e=document.getElementById("sq-"+d.bvid);if(e){e.className="sqi err";e.querySelector(".s2").textContent=d.error;}}
+function fs(){m="";document.getElementById("go").disabled=false;document.getElementById("dot").className="dot ok";document.getElementById("stt").textContent="爬取完成! 结果在 outputs/";clearInterval(p);p=null;}
+function copyBv(){var t=r.map(function(x){return x.bvid;}).join("\n");navigator.clipboard.writeText(t).then(function(){var b=document.getElementById("cpyBtn");b.textContent="ok!";setTimeout(function(){b.textContent="复制 BV 列表";},1500);});}
+function expCsv(){var rows=[["BV号","标题","UP主","播放量","时长(秒)","分区"]];r.forEach(function(x){rows.push([x.bvid,x.title,x.author,x.views,x.duration,x.category]);});var csv=rows.map(function(rw){return rw.map(function(c){return '\u0022'+String(c).replace(/\u0022/g,'\u0022\u0022')+'\u0022';}).join(",");}).join("\n");var b=new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"});var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="bv_list.csv";a.click();}
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function fmt(n){if(n>=1e8)return(n/1e8).toFixed(1)+"亿";if(n>=1e4)return(n/1e4).toFixed(1)+"万";return(n||0).toLocaleString();}
+function fd(s){if(!s||s<=0)return"-";var m=Math.floor(s/60);return m+":"+String(s%60).padStart(2,"0");}
+</script>
+</body></html>

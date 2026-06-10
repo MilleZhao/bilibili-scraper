@@ -1,22 +1,29 @@
-# Generated outputs (reports, CSVs, charts, Excel)
-outputs/
-charts/
-
-# Data files (large JSON/CSV)
-*.json
-*.csv
-!requirements.txt
+# Cookie / secrets
+my_cookies.py
 
 # Python
 __pycache__/
 *.py[cod]
+*.class
 
-# Node
-node_modules/
+# Output / data
+outputs/
 
-# Skill bundle
-*.zip
+# Dev / temp scripts (underscore-prefixed)
+_*.py
+_*.js
 
 # OS
 .DS_Store
 Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data files (Project003)
+*.json
+*.csv
+charts/
